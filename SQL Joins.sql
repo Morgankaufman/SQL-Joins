@@ -1,12 +1,13 @@
 /* joins: select all the computers from the products table:
 using the products table and the categories table, return the product name and the category name */
- select P.Name, C.Name
+ select P.Name as Product, C.Name as Category
  from products as P
- inner join categories as C on Categ.CategoryID = Products.CategoryID
+ inner join categories as C on C.CategoryID = P.CategoryID
  where C.Name = 'Computers';
  
 /* joins: find all product names, product prices, and products ratings that have a rating of 5 */
- select p.Name, p.Price, p.Rating from products as p
+ select p.Name, p.Price, r.Rating 
+ from products as p
  inner join reviews as r on r.ProductID = p.ProductID
  where r.Rating = 5;
  
@@ -52,5 +53,5 @@ This query should return:
 select e.EmployeeID, e.FirstName, e.LastName, p.Name, Sum(s.Quantity) as TotalSold
 from Sales as s
 inner join employees as e on e.EmployeeID = s.EmployeeID
-inner join products as p on p.PorductID = s.ProductID
+inner join products as p on p.ProductID = s.ProductID
 group by e.EmployeeID, p.ProductID;
